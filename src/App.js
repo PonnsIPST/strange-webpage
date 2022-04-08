@@ -10,11 +10,17 @@ const theme = {
   sec: "white",
   headerHeight: "150px",
   bg: "transparent",
-  borderMain: "2px solid #020202",
-  borderSec: "2px solid white",
+  get borderMain(){
+    return '2px solid ' + this.main;
+  },
+  get borderSec(){
+    return '2px solid ' + this.sec;
+  },
   tsize: "14px",
   title: {
-    tsize: "24px",
+    get titleSize(){
+      return this.tsize + 10 + 'px';
+    },
     tweight: "800"
   },
   subtitle: {
@@ -61,6 +67,12 @@ const Content = styled.div`
     color: ${props => props.theme.sec};
     border: ${props => props.theme.borderSec};
     background-color: ${props => props.theme.bg};
+    transition: all .2s ease;
+  }
+  & .btn.primary:hover{
+    color: ${props => props.theme.main};
+    border: ${props => props.theme.sec};
+    background-color: ${props => props.theme.sec};
   }
   & .btn.bpadding{
     border: ${props => props.theme.border};
@@ -73,6 +85,10 @@ const LogoWrapper = styled.div`
   display: flex;
   flex-direction: row;
   justify-content: space-around;
+  transition: all .5s ease;
+  &:hover{
+    transform: rotate(360deg);
+  }
 `
 const Button = function button(props){
   return(
